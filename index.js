@@ -30,4 +30,8 @@ conn = new esl.Connection("127.0.0.1", 8021, "ClueCon", function() {
       console.log(result);
     }
   );
+
+  conn.on("connection::open", (conn, id) => {
+    console.log("Chamada com ID: " + id + " chegou");
+  });
 });
