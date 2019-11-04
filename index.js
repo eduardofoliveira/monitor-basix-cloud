@@ -13,6 +13,8 @@ conn = new esl.Connection("127.0.0.1", 8021, "ClueCon", function() {
 
       if (status === "+OK") {
         callid = call_id.replace("\n", "");
+      } else {
+        console.log(result);
       }
     }
   );
