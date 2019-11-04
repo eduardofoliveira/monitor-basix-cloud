@@ -46,7 +46,7 @@ conn = new esl.Connection("127.0.0.1", 8021, "ClueCon", function() {
       let from = event.getHeader("Other-Leg-Caller-ID-Number");
       let to = event.getHeader("Other-Leg-Callee-ID-Number");
 
-      console.log(JSON.stringify(event));
+      console.log(JSON.stringify(event, null, 2));
 
       console.log({ evento, callid, from, to });
     }
