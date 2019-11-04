@@ -12,25 +12,30 @@ conn = new esl.Connection("127.0.0.1", 8021, "ClueCon", function() {
 
       if (status === "+OK") {
         callid = call_id;
+
+        console.log(status);
+        console.log(call_id.replace("\n", ""));
+        console.log(call_id);
+        console.log("fim");
       }
     }
   );
 
-  conn.on("esl::event::CHANNEL_BRIDGE::**", event => {
-    console.log(event);
+  // conn.on("esl::event::CHANNEL_BRIDGE::**", event => {
+  //   console.log(event);
 
-    console.log(event.getHeader("Channel-Call-UUID"));
-    console.log(callid);
-    console.log(event.getHeader("Channel-Call-UUID") == callid);
+  //   console.log(event.getHeader("Channel-Call-UUID"));
+  //   console.log(callid);
+  //   console.log(event.getHeader("Channel-Call-UUID") == callid);
 
-    if (event.getHeader("Channel-Call-UUID") == callid) {
-      console.log(event);
-    }
-  });
+  //   if (event.getHeader("Channel-Call-UUID") == callid) {
+  //     console.log(event);
+  //   }
+  // });
 
-  conn.on("esl::event::CHANNEL_HANGUP_COMPLETE::**", event => {
-    if (event.getHeader("Channel-Call-UUID") == callid) {
-      console.log(event);
-    }
-  });
+  // conn.on("esl::event::CHANNEL_HANGUP_COMPLETE::**", event => {
+  //   if (event.getHeader("Channel-Call-UUID") == callid) {
+  //     console.log(event);
+  //   }
+  // });
 });
