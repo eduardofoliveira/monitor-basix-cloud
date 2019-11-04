@@ -11,12 +11,7 @@ conn = new esl.Connection("127.0.0.1", 8021, "ClueCon", function() {
       let [status, call_id] = result.body.split(" ");
 
       if (status === "+OK") {
-        callid = call_id;
-
-        console.log(status);
-        console.log(call_id.replace("\n", ""));
-        console.log(call_id);
-        console.log("fim");
+        callid = call_id.replace("\n", "");
       }
     }
   );
@@ -33,9 +28,9 @@ conn = new esl.Connection("127.0.0.1", 8021, "ClueCon", function() {
   //   }
   // });
 
-  // conn.on("esl::event::CHANNEL_HANGUP_COMPLETE::**", event => {
-  //   if (event.getHeader("Channel-Call-UUID") == callid) {
-  //     console.log(event);
-  //   }
-  // });
+  conn.on("esl::event::CHANNEL_HANGUP_COMPLETE::**", event => {
+    if (event.getHeader("Channel-Call-UUID") == callid) {
+      console.log(event);
+    }
+  });
 });
