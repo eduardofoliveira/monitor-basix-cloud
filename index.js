@@ -1,4 +1,9 @@
+require("dotenv").config();
 const esl = require("modesl");
+const sms = require("./sendSms");
+
+let farm_018_failure = false;
+let farm_147_failure = false;
 
 conn = new esl.Connection("127.0.0.1", 8021, "ClueCon", function() {
   conn.events("json", "all");
@@ -15,9 +20,12 @@ conn = new esl.Connection("127.0.0.1", 8021, "ClueCon", function() {
 
         if (status === "+OK") {
           callid18 = call_id.replace("\n", "");
+          farm_018_failure = false;
         } else {
-          console.log("Erro na 18");
-          console.log(result);
+          if (!farm_018_failure) {
+            sms.enviarSms(`Falha no PBX 18 \n${result.body}`, "5511961197559");
+          }
+          farm_018_failure = true;
         }
       }
     );
@@ -30,9 +38,12 @@ conn = new esl.Connection("127.0.0.1", 8021, "ClueCon", function() {
 
         if (status === "+OK") {
           callid147 = call_id.replace("\n", "");
+          farm_147_failure = false;
         } else {
-          console.log("Erro na 147");
-          console.log(result);
+          if (!farm_147_failure) {
+            sms.enviarSms(`Falha no PBX 147 \n${result.body}`, "5511961197559");
+          }
+          farm_147_failure = true;
         }
       }
     );
@@ -98,7 +109,12 @@ conn = new esl.Connection("127.0.0.1", 8021, "ClueCon", function() {
         console.log(hangup_cause);
         console.log("");
       } else {
-        console.log("18 Erro na conexão");
+        if (!farm_018_failure) {
+          sms.enviarSms(`Falha no PBX 18 \n${hangup_cause}`, "5511961197559");
+        }
+        farm_018_failure = true;
+
+        console.log("18 Erro na conexão da chamada");
 
         console.log(qualidade_percentagem);
         console.log(qualidade_mos);
@@ -163,6 +179,11 @@ conn = new esl.Connection("127.0.0.1", 8021, "ClueCon", function() {
         console.log(hangup_cause);
         console.log("");
       } else {
+        if (!farm_147_failure) {
+          sms.enviarSms(`Falha no PBX 147 \n${hangup_cause}`, "5511961197559");
+        }
+        farm_147_failure = true;
+
         console.log("147 Erro na conexão");
 
         console.log(qualidade_percentagem);
