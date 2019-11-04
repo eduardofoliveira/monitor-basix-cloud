@@ -31,7 +31,11 @@ conn = new esl.Connection("127.0.0.1", 8021, "ClueCon", function() {
     }
   );
 
-  conn.on("connection::open", (conn, id) => {
-    console.log("Chamada com ID: " + id + " chegou");
+  conn.on("esl::event::CHANNEL_BRIDGE::**", event => {
+    console.log(event.getHeader("Channel-Call-UUID"));
+  });
+
+  conn.on("esl::event::CHANNEL_HANGUP_COMPLETE::**", event => {
+    console.log(event.getHeader("Channel-Call-UUID"));
   });
 });
