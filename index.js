@@ -16,7 +16,7 @@ conn = new esl.Connection("127.0.0.1", 8021, "ClueCon", function() {
     }
   );
 
-  conn.on("esl::event::CHANNEL_BRIDGE::**", event => {
+  conn.on("esl::event::**", event => {
     if (event.getHeader("Channel-Call-UUID") == callid) {
       let evento = event.getHeader("Event-Name");
       let callid = event.getHeader("Channel-Call-UUID");
@@ -27,14 +27,25 @@ conn = new esl.Connection("127.0.0.1", 8021, "ClueCon", function() {
     }
   });
 
-  conn.on("esl::event::CHANNEL_HANGUP_COMPLETE::**", event => {
-    if (event.getHeader("Channel-Call-UUID") == callid) {
-      let evento = event.getHeader("Event-Name");
-      let callid = event.getHeader("Channel-Call-UUID");
-      let from = event.getHeader("Other-Leg-Caller-ID-Number");
-      let to = event.getHeader("Other-Leg-Callee-ID-Number");
+  // conn.on("esl::event::CHANNEL_BRIDGE::**", event => {
+  //   if (event.getHeader("Channel-Call-UUID") == callid) {
+  //     let evento = event.getHeader("Event-Name");
+  //     let callid = event.getHeader("Channel-Call-UUID");
+  //     let from = event.getHeader("Other-Leg-Caller-ID-Number");
+  //     let to = event.getHeader("Other-Leg-Callee-ID-Number");
 
-      console.log({ evento, callid, from, to });
-    }
-  });
+  //     console.log({ evento, callid, from, to });
+  //   }
+  // });
+
+  // conn.on("esl::event::CHANNEL_HANGUP_COMPLETE::**", event => {
+  //   if (event.getHeader("Channel-Call-UUID") == callid) {
+  //     let evento = event.getHeader("Event-Name");
+  //     let callid = event.getHeader("Channel-Call-UUID");
+  //     let from = event.getHeader("Other-Leg-Caller-ID-Number");
+  //     let to = event.getHeader("Other-Leg-Callee-ID-Number");
+
+  //     console.log({ evento, callid, from, to });
+  //   }
+  // });
 });
