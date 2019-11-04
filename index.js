@@ -1,7 +1,7 @@
 const esl = require("modesl");
 
 conn = new esl.Connection("127.0.0.1", 8021, "ClueCon", function() {
-  conn.events("json", false);
+  conn.events("json", "all");
 
   let callid18 = "";
   let callid147 = "";
