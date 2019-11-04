@@ -20,7 +20,6 @@ conn = new esl.Connection("127.0.0.1", 8021, "ClueCon", function() {
 
         if (status === "+OK") {
           callid18 = call_id.replace("\n", "");
-          farm_018_failure = false;
         } else {
           if (!farm_018_failure) {
             sms.enviarSms(`Falha no PBX 18 \n${result.body}`, "5511961197559");
@@ -38,7 +37,6 @@ conn = new esl.Connection("127.0.0.1", 8021, "ClueCon", function() {
 
         if (status === "+OK") {
           callid147 = call_id.replace("\n", "");
-          farm_147_failure = false;
         } else {
           if (!farm_147_failure) {
             sms.enviarSms(`Falha no PBX 147 \n${result.body}`, "5511961197559");
@@ -92,6 +90,11 @@ conn = new esl.Connection("127.0.0.1", 8021, "ClueCon", function() {
 
       if (billsec > 0 && pacotes_entrada > 0 && pacotes_saida > 0) {
         // Functionando
+
+        if (farm_018_failure) {
+          sms.enviarSms(`Farm do PBX 18 normalizado \n${hangup_cause}`, "5511961197559");
+        }
+        farm_018_failure = false;
         console.log("18 Functionando");
 
         console.log(qualidade_percentagem);
@@ -162,6 +165,11 @@ conn = new esl.Connection("127.0.0.1", 8021, "ClueCon", function() {
 
       if (billsec > 0 && pacotes_entrada > 0 && pacotes_saida > 0) {
         // Functionando
+
+        if (farm_147_failure) {
+          sms.enviarSms(`Farm do PBX 147 normalizado \n${hangup_cause}`, "5511961197559");
+        }
+        farm_147_failure = false;
         console.log("147 Functionando");
 
         console.log(qualidade_percentagem);
