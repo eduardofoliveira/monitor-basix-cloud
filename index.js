@@ -15,14 +15,16 @@ conn = new esl.Connection("127.0.0.1", 8021, "ClueCon", function() {
     conn.api(
       //"originate {origination_caller_id_number=551112345678,bridge_generate_comfort_noise=true}sofia/gateway/basix-cloud/Eduardo@cloud.cloudcom.com.br &bridge({origination_caller_id_number=551112345678}sofia/gateway/basix-cloud/8981@cloud.cloudcom.com.br)",
       "originate {origination_caller_id_number=551112345678,bridge_generate_comfort_noise=true}sofia/gateway/basix-cloud/500001@monitora18.cloudcom.com.br 99998888 XML public",
-      result => {
+      async result => {
         let [status, call_id] = result.body.split(" ");
 
         if (status === "+OK") {
           callid18 = call_id.replace("\n", "");
         } else {
           if (!farm_018_failure) {
-            sms.enviarSms(`Falha no PBX 18 \n${result.body}`, "5511961197559");
+            await sms.enviarSms(`Falha ao enviar chamada para PBX 18\n${result.body}`, "5511961197559");
+            await sms.enviarSms(`Falha ao enviar chamada para PBX 18\n${result.body}`, "5511984303738");
+            await sms.enviarSms(`Falha ao enviar chamada para PBX 18\n${result.body}`, "5511982516476");
           }
           farm_018_failure = true;
         }
@@ -39,7 +41,9 @@ conn = new esl.Connection("127.0.0.1", 8021, "ClueCon", function() {
           callid147 = call_id.replace("\n", "");
         } else {
           if (!farm_147_failure) {
-            sms.enviarSms(`Falha no PBX 147 \n${result.body}`, "5511961197559");
+            sms.enviarSms(`Falha ao enviar chamada para PBX 147\n${result.body}`, "5511961197559");
+            sms.enviarSms(`Falha ao enviar chamada para PBX 147\n${result.body}`, "5511984303738");
+            sms.enviarSms(`Falha ao enviar chamada para PBX 147\n${result.body}`, "5511982516476");
           }
           farm_147_failure = true;
         }
@@ -93,32 +97,44 @@ conn = new esl.Connection("127.0.0.1", 8021, "ClueCon", function() {
 
         if (farm_018_failure) {
           sms.enviarSms(`Farm do PBX 18 normalizado \n${hangup_cause}`, "5511961197559");
+          sms.enviarSms(`Farm do PBX 18 normalizado \n${hangup_cause}`, "5511984303738");
+          sms.enviarSms(`Farm do PBX 18 normalizado \n${hangup_cause}`, "5511982516476");
         }
         farm_018_failure = false;
         console.log("18 Functionando");
 
-        console.log(qualidade_percentagem);
-        console.log(qualidade_mos);
-        console.log(pacotes_entrada);
-        console.log(pacotes_saida);
-        console.log(duration);
-        console.log(billsec);
-        console.log(start);
-        console.log(answer);
-        console.log(end);
-        console.log(last_app);
-        console.log(remove_media_ip);
-        console.log(endpoint_disposition);
-        console.log(hangup_cause);
-        console.log("");
+        // console.log(qualidade_percentagem);
+        // console.log(qualidade_mos);
+        // console.log(pacotes_entrada);
+        // console.log(pacotes_saida);
+        // console.log(duration);
+        // console.log(billsec);
+        // console.log(start);
+        // console.log(answer);
+        // console.log(end);
+        // console.log(last_app);
+        // console.log(remove_media_ip);
+        // console.log(endpoint_disposition);
+        // console.log(hangup_cause);
+        // console.log("");
       } else {
         if (!farm_018_failure) {
-          sms.enviarSms(`Falha no PBX 18 \n${hangup_cause}`, "5511961197559");
+          sms.enviarSms(
+            `Falha no PBX 18 após conectar\nDuracao: ${billsec}\nMedia: ${remove_media_ip}\nEndpoint: ${endpoint_disposition}\nDesconexao: ${hangup_cause}`,
+            "5511961197559"
+          );
+          sms.enviarSms(
+            `Falha no PBX 18 após conectar\nDuracao: ${billsec}\nMedia: ${remove_media_ip}\nEndpoint: ${endpoint_disposition}\nDesconexao: ${hangup_cause}`,
+            "5511984303738"
+          );
+          sms.enviarSms(
+            `Falha no PBX 18 após conectar\nDuracao: ${billsec}\nMedia: ${remove_media_ip}\nEndpoint: ${endpoint_disposition}\nDesconexao: ${hangup_cause}`,
+            "5511982516476"
+          );
         }
         farm_018_failure = true;
 
         console.log("18 Erro na conexão da chamada");
-
         console.log(qualidade_percentagem);
         console.log(qualidade_mos);
         console.log(pacotes_entrada);
@@ -168,32 +184,43 @@ conn = new esl.Connection("127.0.0.1", 8021, "ClueCon", function() {
 
         if (farm_147_failure) {
           sms.enviarSms(`Farm do PBX 147 normalizado \n${hangup_cause}`, "5511961197559");
+          sms.enviarSms(`Farm do PBX 147 normalizado \n${hangup_cause}`, "5511984303738");
+          sms.enviarSms(`Farm do PBX 147 normalizado \n${hangup_cause}`, "5511982516476");
         }
         farm_147_failure = false;
-        console.log("147 Functionando");
-
-        console.log(qualidade_percentagem);
-        console.log(qualidade_mos);
-        console.log(pacotes_entrada);
-        console.log(pacotes_saida);
-        console.log(duration);
-        console.log(billsec);
-        console.log(start);
-        console.log(answer);
-        console.log(end);
-        console.log(last_app);
-        console.log(remove_media_ip);
-        console.log(endpoint_disposition);
-        console.log(hangup_cause);
-        console.log("");
+        // console.log("147 Functionando");
+        // console.log(qualidade_percentagem);
+        // console.log(qualidade_mos);
+        // console.log(pacotes_entrada);
+        // console.log(pacotes_saida);
+        // console.log(duration);
+        // console.log(billsec);
+        // console.log(start);
+        // console.log(answer);
+        // console.log(end);
+        // console.log(last_app);
+        // console.log(remove_media_ip);
+        // console.log(endpoint_disposition);
+        // console.log(hangup_cause);
+        // console.log("");
       } else {
         if (!farm_147_failure) {
-          sms.enviarSms(`Falha no PBX 147 \n${hangup_cause}`, "5511961197559");
+          sms.enviarSms(
+            `Falha no PBX 147 após conectar\nDuracao: ${billsec}\nMedia: ${remove_media_ip}\nEndpoint: ${endpoint_disposition}\nDesconexao: ${hangup_cause}`,
+            "5511961197559"
+          );
+          sms.enviarSms(
+            `Falha no PBX 147 após conectar\nDuracao: ${billsec}\nMedia: ${remove_media_ip}\nEndpoint: ${endpoint_disposition}\nDesconexao: ${hangup_cause}`,
+            "5511984303738"
+          );
+          sms.enviarSms(
+            `Falha no PBX 147 após conectar\nDuracao: ${billsec}\nMedia: ${remove_media_ip}\nEndpoint: ${endpoint_disposition}\nDesconexao: ${hangup_cause}`,
+            "5511982516476"
+          );
         }
         farm_147_failure = true;
 
         console.log("147 Erro na conexão");
-
         console.log(qualidade_percentagem);
         console.log(qualidade_mos);
         console.log(pacotes_entrada);
