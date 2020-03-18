@@ -101,7 +101,7 @@ conn = new esl.Connection("127.0.0.1", 8021, "ClueCon", function() {
   //   }
   // });
 
-  conn.on("esl::event::CHANNEL_HANGUP_COMPLETE::**", event => {
+  conn.on("esl::event::CHANNEL_HANGUP_COMPLETE::**", async event => {
     if (event.getHeader("Channel-Call-UUID") == callid18) {
       let qualidade_percentagem = event.getHeader("variable_rtp_audio_in_quality_percentage");
       let qualidade_mos = event.getHeader("variable_rtp_audio_in_mos");
