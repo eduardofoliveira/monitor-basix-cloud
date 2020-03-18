@@ -298,7 +298,7 @@ conn = new esl.Connection("127.0.0.1", 8021, "ClueCon", function() {
       let endpoint_disposition = event.getHeader("variable_endpoint_disposition");
       let hangup_cause = event.getHeader("variable_hangup_cause");
 
-      if (billsec > 0 && pacotes_entrada > 0 && pacotes_saida > 0) {
+      if (billsec > 0/* && pacotes_entrada > 0 && pacotes_saida > 0*/) {
         // Functionando
 
         if (farm_Allianz_failure) {
