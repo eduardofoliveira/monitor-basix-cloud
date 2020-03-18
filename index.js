@@ -31,7 +31,7 @@ conn = new esl.Connection("127.0.0.1", 8021, "ClueCon", function() {
             await sms.enviarSms(`Falha ao enviar chamada para PBX 18\n${result.body}`, "5511961197559");
             await sms.enviarSms(`Falha ao enviar chamada para PBX 18\n${result.body}`, "5511984303738");
             await sms.enviarSms(`Falha ao enviar chamada para PBX 18\n${result.body}`, "5511982516476");
-            await email.sendMail(`suporte@cloudcom.com.br, eduardo@cloudcom.com.br, eduardo_felipe_oliveira@yahoo.com.br`, `Falha ao enviar chamada para PBX 18`, `Falha ao enviar chamada para PBX 18 ${result.body}`)
+            await email.sendMail(`suporte.basix@cloudcom.com.br, eduardo@cloudcom.com.br, eduardo_felipe_oliveira@yahoo.com.br`, `Falha ao enviar chamada para PBX 18`, `Falha ao enviar chamada para PBX 18 ${result.body}`)
           }
           farm_018_failure = true;
         }
@@ -51,7 +51,7 @@ conn = new esl.Connection("127.0.0.1", 8021, "ClueCon", function() {
             await sms.enviarSms(`Falha ao enviar chamada para PBX 147\n${result.body}`, "5511961197559");
             await sms.enviarSms(`Falha ao enviar chamada para PBX 147\n${result.body}`, "5511984303738");
             await sms.enviarSms(`Falha ao enviar chamada para PBX 147\n${result.body}`, "5511982516476");
-            await email.sendMail(`suporte@cloudcom.com.br, eduardo@cloudcom.com.br, eduardo_felipe_oliveira@yahoo.com.br`, `Falha ao enviar chamada para PBX 147`, `Falha ao enviar chamada para PBX 147 ${result.body}`)
+            await email.sendMail(`suporte.basix@cloudcom.com.br, eduardo@cloudcom.com.br, eduardo_felipe_oliveira@yahoo.com.br`, `Falha ao enviar chamada para PBX 147`, `Falha ao enviar chamada para PBX 147 ${result.body}`)
           }
           farm_147_failure = true;
         }
@@ -68,9 +68,10 @@ conn = new esl.Connection("127.0.0.1", 8021, "ClueCon", function() {
           callidAllianz = call_id.replace("\n", "");
         } else {
           if (!farm_Allianz_failure) {
-            sms.enviarSms(`Falha ao enviar chamada para Basix Allianz\n${result.body}`, "5511961197559");
-            sms.enviarSms(`Falha ao enviar chamada para Basix Allianz\n${result.body}`, "5511984303738");
-            sms.enviarSms(`Falha ao enviar chamada para Basix Allianz\n${result.body}`, "5511982516476");
+            await sms.enviarSms(`Falha ao enviar chamada para Basix Allianz\n${result.body}`, "5511961197559");
+            await sms.enviarSms(`Falha ao enviar chamada para Basix Allianz\n${result.body}`, "5511984303738");
+            await sms.enviarSms(`Falha ao enviar chamada para Basix Allianz\n${result.body}`, "5511982516476");
+            await email.sendMail(`suporte.basix@cloudcom.com.br, eduardo@cloudcom.com.br, eduardo_felipe_oliveira@yahoo.com.br`, `Falha ao enviar chamada para PBX Allianz`, `Falha ao enviar chamada para PBX Allianz ${result.body}`)
           }
           farm_Allianz_failure = true;
         }
@@ -126,7 +127,7 @@ conn = new esl.Connection("127.0.0.1", 8021, "ClueCon", function() {
           sms.enviarSms(`Farm do PBX 18 normalizado \n${hangup_cause}`, "5511961197559");
           sms.enviarSms(`Farm do PBX 18 normalizado \n${hangup_cause}`, "5511984303738");
           sms.enviarSms(`Farm do PBX 18 normalizado \n${hangup_cause}`, "5511982516476");
-          email.sendMail(`suporte@cloudcom.com.br, eduardo@cloudcom.com.br, eduardo_felipe_oliveira@yahoo.com.br`, `Farm do PBX 18 normalizado`, `Farm do PBX 18 normalizado ${hangup_cause}`)
+          email.sendMail(`suporte.basix@cloudcom.com.br, eduardo@cloudcom.com.br, eduardo_felipe_oliveira@yahoo.com.br`, `Farm do PBX 18 normalizado`, `Farm do PBX 18 normalizado ${hangup_cause}`)
         }
         farm_018_failure = false;
         console.log("18 Functionando");
@@ -159,7 +160,7 @@ conn = new esl.Connection("127.0.0.1", 8021, "ClueCon", function() {
             `Falha no PBX 18 após conectar\nDuracao: ${billsec}\nMedia: ${remove_media_ip}\nEndpoint: ${endpoint_disposition}\nDesconexao: ${hangup_cause}`,
             "5511982516476"
           );
-          email.sendMail(`suporte@cloudcom.com.br, eduardo@cloudcom.com.br, eduardo_felipe_oliveira@yahoo.com.br`, `Falha no PBX 18 após conectar`, `Falha no PBX 18 após conectar`)
+          email.sendMail(`suporte.basix@cloudcom.com.br, eduardo@cloudcom.com.br, eduardo_felipe_oliveira@yahoo.com.br`, `Falha no PBX 18 após conectar`, `Falha no PBX 18 após conectar`)
         }
         farm_018_failure = true;
 
@@ -215,7 +216,7 @@ conn = new esl.Connection("127.0.0.1", 8021, "ClueCon", function() {
           sms.enviarSms(`Farm do PBX 147 normalizado \n${hangup_cause}`, "5511961197559");
           sms.enviarSms(`Farm do PBX 147 normalizado \n${hangup_cause}`, "5511984303738");
           sms.enviarSms(`Farm do PBX 147 normalizado \n${hangup_cause}`, "5511982516476");
-          email.sendMail(`suporte@cloudcom.com.br, eduardo@cloudcom.com.br, eduardo_felipe_oliveira@yahoo.com.br`, `Farm do PBX 147 normalizado`, `Farm do PBX 147 normalizado ${hangup_cause}`)
+          email.sendMail(`suporte.basix@cloudcom.com.br, eduardo@cloudcom.com.br, eduardo_felipe_oliveira@yahoo.com.br`, `Farm do PBX 147 normalizado`, `Farm do PBX 147 normalizado ${hangup_cause}`)
         }
         farm_147_failure = false;
         console.log("147 Functionando");
@@ -248,7 +249,7 @@ conn = new esl.Connection("127.0.0.1", 8021, "ClueCon", function() {
             `Falha no PBX 147 após conectar\nDuracao: ${billsec}\nMedia: ${remove_media_ip}\nEndpoint: ${endpoint_disposition}\nDesconexao: ${hangup_cause}`,
             "5511982516476"
           );
-          email.sendMail(`suporte@cloudcom.com.br, eduardo@cloudcom.com.br, eduardo_felipe_oliveira@yahoo.com.br`, `Falha no PBX 147 após conectar`, `Falha no PBX 147 após conectar`)
+          email.sendMail(`suporte.basix@cloudcom.com.br, eduardo@cloudcom.com.br, eduardo_felipe_oliveira@yahoo.com.br`, `Falha no PBX 147 após conectar`, `Falha no PBX 147 após conectar`)
         }
         farm_147_failure = true;
 
@@ -301,9 +302,10 @@ conn = new esl.Connection("127.0.0.1", 8021, "ClueCon", function() {
         // Functionando
 
         if (farm_Allianz_failure) {
-          sms.enviarSms(`Farm do PBX Allianz normalizado \n${hangup_cause}`, "5511961197559");
-          sms.enviarSms(`Farm do PBX Allianz normalizado \n${hangup_cause}`, "5511984303738");
-          sms.enviarSms(`Farm do PBX Allianz normalizado \n${hangup_cause}`, "5511982516476");
+          await sms.enviarSms(`Farm do PBX Allianz normalizado \n${hangup_cause}`, "5511961197559");
+          await sms.enviarSms(`Farm do PBX Allianz normalizado \n${hangup_cause}`, "5511984303738");
+          await sms.enviarSms(`Farm do PBX Allianz normalizado \n${hangup_cause}`, "5511982516476");
+          await email.sendMail(`suporte.basix@cloudcom.com.br, eduardo@cloudcom.com.br, eduardo_felipe_oliveira@yahoo.com.br`, `Farm do PBX Allianz normalizado`, `Farm do PBX Allianz normalizado ${hangup_cause}`)
         }
         farm_Allianz_failure = false;
         // console.log("147 Functionando");
@@ -335,6 +337,7 @@ conn = new esl.Connection("127.0.0.1", 8021, "ClueCon", function() {
             `Falha no PBX Allianz após conectar\nDuracao: ${billsec}\nMedia: ${remove_media_ip}\nEndpoint: ${endpoint_disposition}\nDesconexao: ${hangup_cause}`,
             "5511982516476"
           );
+          email.sendMail(`suporte.basix@cloudcom.com.br, eduardo@cloudcom.com.br, eduardo_felipe_oliveira@yahoo.com.br`, `Falha no PBX Allianz após conectar`, `Falha no PBX Allianz após conectar`)
         }
         farm_Allianz_failure = true;
 
